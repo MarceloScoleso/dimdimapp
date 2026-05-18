@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Clientes | DimDimApp{% endblock %}
+
+{% block content %}
+    <h2>Clientes Cadastrados</h2>
+
+    <div class="actions">
+        <a href="{{ url_for('novo_cliente') }}" class="btn btn-success">+ Novo Cliente</a>
+    </div>
+
+    {% if clientes %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>E-mail</th>
+                    <th>Saldo</th>
+                    <th>Cadastrado em</th>
+                    <th style="text-align:center;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in clientes %}
+                <tr>
+                    <td>{{ c.id }}</td>
+                    <td><strong>{{ c.nome }}</strong></td>
+                    <td>{{ c.cpf }}</td>
+                    <td>{{ c.email }}</td>
+                    <td class="saldo">R$ {{ "%.2f"|format(c.saldo) }}</td>
+                    <td>{{ c.criado_em.strftime("%d/%m/%Y %H:%M") }}</td>
+                    <td style="text-align:center;">
+                        <a href="{{ url_for('editar_cliente', cliente_id=c.id) }}"
+                           class="btn btn-warning btn-sm">Editar</a>
+                        <form class="delete-form" method="POST"
+                              action="{{ url_for('deletar_cliente', cliente_id=c.id) }}"
+                              onsubmit="return confirm('Confirmar exclusão de {{ c.nome }}?');">
+                            <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="empty">
+            Nenhum cliente cadastrado.<br>
+            Clique em <strong>+ Novo Cliente</strong> para começar.
+        </div>
+    {% endif %}
+{% endblock %}

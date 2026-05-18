@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}DimDimApp{% endblock %}</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #065A82 0%, #21295C 100%);
+            min-height: 100vh;
+            color: #1E293B;
+        }
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            color: #065A82;
+            font-size: 1.5rem;
+        }
+        header h1 span { color: #F9A826; }
+        header .info {
+            font-size: 0.85rem;
+            color: #64748B;
+        }
+        main {
+            max-width: 1100px;
+            margin: 2rem auto;
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h2 { color: #065A82; margin-bottom: 1.5rem; font-size: 1.4rem; }
+        .actions { margin-bottom: 1.5rem; }
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+        .btn:hover { opacity: 0.85; }
+        .btn-primary { background: #065A82; color: #fff; }
+        .btn-success { background: #059669; color: #fff; }
+        .btn-warning { background: #F9A826; color: #21295C; }
+        .btn-danger  { background: #DC2626; color: #fff; }
+        .btn-secondary { background: #64748B; color: #fff; }
+        .btn-sm { padding: 0.35rem 0.7rem; font-size: 0.85rem; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            padding: 0.85rem;
+            text-align: left;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        th {
+            background: #065A82;
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        tr:hover { background: #F5F7FA; }
+        .saldo { font-weight: 600; color: #059669; }
+        .empty {
+            text-align: center;
+            padding: 3rem;
+            color: #64748B;
+            font-style: italic;
+        }
+        form { display: grid; gap: 1rem; max-width: 500px; }
+        label { display: block; font-weight: 600; margin-bottom: 0.4rem; color: #1E293B; }
+        input {
+            width: 100%;
+            padding: 0.7rem;
+            border: 2px solid #E2E8F0;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        input:focus { outline: none; border-color: #065A82; }
+        .form-actions { display: flex; gap: 0.5rem; margin-top: 1rem; }
+        .flash {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        .flash.success { background: #D1FAE5; color: #065F46; border-left: 4px solid #059669; }
+        .flash.error   { background: #FEE2E2; color: #991B1B; border-left: 4px solid #DC2626; }
+        .delete-form { display: inline; }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dim<span>Dim</span>App</h1>
+        <div class="info">Container RM 557481 | CP3 DevOps</div>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        DimDimApp © 2026 - Marcelo A. S. Júnior (RM 557481) & João Paulo F. de Oliveira (RM 557410)
+    </footer>
+</body>
+</html>
