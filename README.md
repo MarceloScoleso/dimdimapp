@@ -11,7 +11,7 @@
 | Marcelo Antônio Scoleso Júnior      | 557481 | Representante |
 | João Paulo Francisco de Oliveira    | 557410 | Integrante    |
 
-🔗 **Vídeo no YouTube:** [INSERIR LINK AQUI]
+🔗 **Vídeo no YouTube:** https://www.youtube.com/watch?v=jGZZfUZW6HQ
 🔗 **Repositório:** https://github.com/MarceloScoleso/dimdimapp
 
 ---
@@ -243,15 +243,11 @@ Você verá a tela inicial do **DimDimApp** com a lista de clientes vazia.
 
 ---
 
-## ✅ Como evidenciar os requisitos no vídeo
-
 ### 1. Containers rodando em background
 
 ```bash
 docker container ls
 ```
-
-Saída esperada: dois containers `app-dimdim-557481` e `db-dimdim-557481` com status `Up`.
 
 ### 2. Estrutura de diretórios e usuário não-root (app)
 
